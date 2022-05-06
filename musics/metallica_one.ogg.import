@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/metallica_one.ogg-f41e8f7e29f4882ba8f2eb82ab65a139.oggstr"
+
+[deps]
+
+source_file="res://musics/metallica_one.ogg"
+dest_files=[ "res://.import/metallica_one.ogg-f41e8f7e29f4882ba8f2eb82ab65a139.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

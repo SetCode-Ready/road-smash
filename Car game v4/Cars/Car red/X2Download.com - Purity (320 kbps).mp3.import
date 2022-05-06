@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/X2Download.com - Purity (320 kbps).mp3-4f426ffdc2bc04884ad85c7160a586d1.mp3str"
+
+[deps]
+
+source_file="res://Car game v4/Cars/Car red/X2Download.com - Purity (320 kbps).mp3"
+dest_files=[ "res://.import/X2Download.com - Purity (320 kbps).mp3-4f426ffdc2bc04884ad85c7160a586d1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
