@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://sprites/background.png" type="Texture" id=1]
 [ext_resource path="res://Car game v4/Cars/Car red/Car red.png" type="Texture" id=2]
 [ext_resource path="res://scripts/car.gd" type="Script" id=3]
-[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sounds/gun_shoot.ogg" type="AudioStream" id=5]
 [ext_resource path="res://sounds/gun_reload.wav" type="AudioStream" id=6]
 [ext_resource path="res://musics/metallica_one.ogg" type="AudioStream" id=7]
 [ext_resource path="res://sounds/car_explosion.wav" type="AudioStream" id=8]
+[ext_resource path="res://scripts/background.gd" type="Script" id=9]
+[ext_resource path="res://enemies.gd" type="Script" id=10]
 
 [sub_resource type="Shader" id=1]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.4.4.stable's CanvasItemMaterial.
@@ -16,9 +17,10 @@ shader_type canvas_item;
 
 uniform float velocity = -.5f;
 uniform float deslocation = 0;
+uniform float time = 0f;
 
 void fragment(){
-	COLOR = texture(TEXTURE, UV + (vec2(0, .5) * TIME * velocity) + vec2(deslocation, 0));
+	COLOR = texture(TEXTURE, UV + (vec2(0, .5) * time * velocity) + vec2(deslocation, 0));
 }
 "
 
@@ -26,6 +28,7 @@ void fragment(){
 shader = SubResource( 1 )
 shader_param/velocity = -0.5
 shader_param/deslocation = 0.0
+shader_param/time = 0.0
 
 [node name="game" type="Node2D"]
 
@@ -33,43 +36,28 @@ shader_param/deslocation = 0.0
 material = SubResource( 2 )
 texture = ExtResource( 1 )
 centered = false
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_group_": true
 }
+car = NodePath("../car")
 
 [node name="car" type="Node2D" parent="."]
-position = Vector2( 66, 406 )
+position = Vector2( 81, 269 )
+scale = Vector2( 0.991049, 1.01027 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CarRed" type="Sprite" parent="car"]
+scale = Vector2( 1, 0.993321 )
 texture = ExtResource( 2 )
 
-[node name="enemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 92, 100 )
+[node name="enemies" type="Node2D" parent="."]
+script = ExtResource( 10 )
 
-[node name="enemy2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 36, 99 )
-
-[node name="enemy3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 60, 97 )
-
-[node name="enemy4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 129, 105 )
-
-[node name="enemy5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 95, 152 )
-
-[node name="enemy6" parent="." instance=ExtResource( 4 )]
-position = Vector2( 73, 153 )
-
-[node name="enemy7" parent="." instance=ExtResource( 4 )]
-position = Vector2( 38, 177 )
-
-[node name="enemy8" parent="." instance=ExtResource( 4 )]
-position = Vector2( 116, 43 )
+[node name="spawn_timer" type="Timer" parent="enemies"]
 
 [node name="gun_shoot_fx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -85,4 +73,5 @@ stream = ExtResource( 7 )
 volume_db = -20.0
 autoplay = true
 
+[connection signal="timeout" from="enemies/spawn_timer" to="enemies" method="_on_spawn_timer_timeout"]
 [connection signal="finished" from="gun_reload_fx" to="car" method="_on_gun_reload_fx_finished"]

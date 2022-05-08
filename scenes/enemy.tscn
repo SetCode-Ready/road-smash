@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Car game v4/Cars/Car grey/Car grey.png" type="Texture" id=1]
 [ext_resource path="res://scripts/enemy.gd" type="Script" id=2]
+[ext_resource path="res://sounds/gun_shoot.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.0
 height = 18.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "explosion"
 
 [node name="enemy" type="Node2D"]
 script = ExtResource( 2 )
@@ -21,6 +25,17 @@ collision_mask = 3
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/explosion = SubResource( 2 )
+
+[node name="shot_timer" type="Timer" parent="."]
+
+[node name="gun_shoot_fx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+scale = Vector2( 0.835308, 1.59269 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="shot_timer" to="." method="_on_shot_timer_timeout"]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
