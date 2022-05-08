@@ -1,7 +1,7 @@
 extends Node2D
 
-var velocity = 120
-const PRE_LAZER = preload("res://scenes/gun bullet.tscn")
+export var velocity = 120
+const PRE_LAZER = preload("res://scenes/player_gun_bullet.tscn")
 
 var bullet = 1
 var reloading = false
