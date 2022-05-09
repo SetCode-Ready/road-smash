@@ -61,13 +61,13 @@ anims/default = SubResource( 2 )
 position = Vector2( -0.970504, 0.604669 )
 scale = Vector2( 0.207727, 0.217457 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PlayerGunBulletArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGunBulletArea"]
 position = Vector2( -0.84375, -0.0625 )
 shape = SubResource( 3 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="PlayerGunBulletArea" to="." method="_on_Area2D_area_entered"]

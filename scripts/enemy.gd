@@ -15,10 +15,11 @@ func _process(delta: float) -> void:
 	
 
 func _on_Area2D_area_entered(area):
+	if area.get_name() == "PlayerGunBulletArea":
+		get_node("car_explosion_fx").play()
+		#queue_free()
 	#get_node("AnimationPlayer").play()
-	#get_parent (). get_node("car_explosion_fx").play()
 	#queue_free()
-	pass
 
 
 #func _on_AnimationPlayer_animation_finished(anim_name):
