@@ -73,5 +73,9 @@ stream = ExtResource( 7 )
 volume_db = -20.0
 autoplay = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
 [connection signal="timeout" from="enemies/spawn_timer" to="enemies" method="_on_spawn_timer_timeout"]
 [connection signal="finished" from="gun_reload_fx" to="car" method="_on_gun_reload_fx_finished"]

@@ -14,5 +14,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_Area2D_area_entered(area):
-	#queue_free()
-	pass
+	# trocar pelo nome da area2d do player
+	if area.get_name() == "PlayerGunBulletArea":
+		queue_free()
