@@ -3,7 +3,7 @@ extends Node2D
 export var velocity = 120
 const PRE_LAZER = preload("res://scenes/player_gun_bullet.tscn")
 
-var bullet = 1
+export var bullet = 8
 var reloading = false
 
 func _ready():
@@ -13,6 +13,11 @@ func _process(delta):
 	
 	var dirX = 0
 	var dirY = 0
+	
+	if Input.is_key_pressed(KEY_R):
+		if bullet > 1 and !reloading:
+			reloading = true
+			get_parent().get_node("gun_reload_fx").play()
 	
 	if Input.is_action_pressed("ui_up"):
 		dirY += -1
@@ -27,8 +32,8 @@ func _process(delta):
 		dirX += -1
 		
 	if Input.is_action_just_pressed("ui_accept"):
-		if bullet < 9:
-			bullet += 1
+		if bullet > 0:
+			bullet -= 1
 			var lazer = PRE_LAZER.instance()
 			get_parent().add_child(lazer)
 			lazer.global_position = global_position
@@ -45,5 +50,10 @@ func _process(delta):
 
 
 func _on_gun_reload_fx_finished():
-	bullet = 1
+	bullet = 8
 	reloading = false
+
+
+func _on_PLayerCollisionShape_area_entered(area):
+	if(area.get_name() == "EnemyGunBulletArea"):
+		get_parent().get_node("car_explosion_fx").play()

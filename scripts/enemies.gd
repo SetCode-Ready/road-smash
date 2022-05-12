@@ -7,6 +7,7 @@ func _ready() -> void:
 
 
 func _on_spawn_timer_timeout() -> void:
+	randomize()
 	if (get_child_count() <= 6):
 		var enemy = PRE_ENEMY.instance()
 		add_child(enemy)

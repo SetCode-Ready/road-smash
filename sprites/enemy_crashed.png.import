@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Grey car crashed.png-cfb3a14c1bce6a353238d16fa2014c01.stex"
+path="res://.import/enemy_crashed.png-e38782931d855d15d17032cc8fd6e1aa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Car game v4/Cars/Car grey/Grey car crashed.png"
-dest_files=[ "res://.import/Grey car crashed.png-cfb3a14c1bce6a353238d16fa2014c01.stex" ]
+source_file="res://sprites/enemy_crashed.png"
+dest_files=[ "res://.import/enemy_crashed.png-e38782931d855d15d17032cc8fd6e1aa.stex" ]
 
 [params]
 

@@ -1,20 +1,55 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/explosion.png" type="Texture" id=1]
+[ext_resource path="res://scripts/explosion.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 length = 0.7
 loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "explosion"
-loop = true
+length = 0.61
+tracks/0/type = "value"
+tracks/0/path = NodePath("explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
 
 [node name="explosion" type="Node2D"]
-position = Vector2( 76, 37 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="explosion" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 4
+vframes = 2
+
+[node name="explosion_animation" type="AnimationPlayer" parent="."]
 autoplay = "explosion"
 anims/RESET = SubResource( 1 )
 anims/explosion = SubResource( 2 )
+
+[connection signal="animation_finished" from="explosion_animation" to="." method="_on_explosion_animation_animation_finished"]
+[connection signal="animation_started" from="explosion_animation" to="." method="_on_explosion_animation_animation_started"]

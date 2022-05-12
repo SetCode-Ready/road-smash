@@ -63,7 +63,7 @@ scale = Vector2( 0.207727, 0.217457 )
 
 [node name="PlayerGunBulletArea" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGunBulletArea"]
 position = Vector2( -0.84375, -0.0625 )

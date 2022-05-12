@@ -14,4 +14,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_Area2D_area_entered(area):
-	queue_free()
+	if area.get_name() == "EnemyArea":
+		queue_free()
