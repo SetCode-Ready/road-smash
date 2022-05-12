@@ -17,32 +17,25 @@ func _ready():
 	
 func _process(delta: float) -> void:
 	
-	if life == 0 and !get_node("explosion"):    
+	if life == 0 and !get_node("explosion") and !explosion.finished:    
 		
 		add_child(explosion)
 		explosion.global_position = global_position
+		get_node("car_explosion_fx").play()
+		velY = 200
 	
 	if explosion.finished:
-		queue_free()
+		explosion.visible = false
+		$CarGrey.set_texture(load("res://sprites/enemy_crashed.png"))
 		
 	global_position.x = clamp(global_position.x, 29, 132)
 	translate(Vector2(0, velY) * delta)
 	
 
 func _on_Area2D_area_entered(area):
-	
-			
 	if area.get_name() == "PlayerGunBulletArea":
-		get_node("car_explosion_fx").play()
+		get_node("damage_fx").play()
 		life -= 1
-		#queue_free()
-	#get_node("AnimationPlayer").play()
-	#queue_free()
-
-
-#func _on_AnimationPlayer_animation_finished(anim_name):
-#	queue_free()
-
 
 func _on_shot_timer_timeout() -> void:
 	var lazer = PRE_LAZER.instance()

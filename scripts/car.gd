@@ -15,7 +15,7 @@ func _process(delta):
 	var dirY = 0
 	
 	if Input.is_key_pressed(KEY_R):
-		if bullet > 1 and !reloading:
+		if bullet >= 0 and !reloading:
 			reloading = true
 			get_parent().get_node("gun_reload_fx").play()
 	
