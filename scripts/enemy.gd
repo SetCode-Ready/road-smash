@@ -8,25 +8,25 @@ var explosion = PRE_EXPLOSION.instance()
 onready var velY = rand_range(50, 120)
 
 var life = 3
+var dead = false
 
 func _ready():
 	$shot_timer.wait_time = 2.0
 	$shot_timer.start()
 	
-	
-	
 func _process(delta: float) -> void:
 	
-	if life == 0 and !get_node("explosion") and !explosion.finished:    
+	if !dead:
+		if life == 0 and !get_node("explosion"):    
+			add_child(explosion)
+			explosion.global_position = global_position
+			get_node("car_explosion_fx").play()
+			velY = 200
 		
-		add_child(explosion)
-		explosion.global_position = global_position
-		get_node("car_explosion_fx").play()
-		velY = 200
-	
-	if explosion.finished:
-		explosion.visible = false
-		$CarGrey.set_texture(load("res://sprites/enemy_crashed.png"))
+		if explosion.finished:
+			dead = true
+			get_node("explosion").queue_free()
+			$CarGrey.set_texture(load("res://sprites/enemy_crashed.png"))
 		
 	global_position.x = clamp(global_position.x, 29, 132)
 	translate(Vector2(0, velY) * delta)
@@ -38,10 +38,11 @@ func _on_Area2D_area_entered(area):
 		life -= 1
 
 func _on_shot_timer_timeout() -> void:
-	var lazer = PRE_LAZER.instance()
-	get_parent().add_child(lazer)
-	lazer.global_position = global_position
-	get_node("gun_shoot_fx").play()
+	if life > 0:
+		var lazer = PRE_LAZER.instance()
+		add_child(lazer)
+		lazer.global_position = global_position
+		get_node("gun_shoot_fx").play()
 
 
 func _on_VisibilityNotifier2D_viewport_exited(viewport: Viewport) -> void:
