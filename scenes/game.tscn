@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://sprites/background.png" type="Texture" id=1]
 [ext_resource path="res://Car game v4/Cars/Car red/Car red.png" type="Texture" id=2]
 [ext_resource path="res://scripts/car.gd" type="Script" id=3]
-[ext_resource path="res://scripts/ammo.gd" type="Script" id=4]
+[ext_resource path="res://scripts/player_score_hud.gd" type="Script" id=4]
 [ext_resource path="res://sounds/gun_shoot.ogg" type="AudioStream" id=5]
 [ext_resource path="res://sounds/gun_reload.wav" type="AudioStream" id=6]
 [ext_resource path="res://musics/metallica_one.ogg" type="AudioStream" id=7]
 [ext_resource path="res://sounds/car_explosion.wav" type="AudioStream" id=8]
 [ext_resource path="res://scripts/background.gd" type="Script" id=9]
 [ext_resource path="res://scripts/enemies.gd" type="Script" id=10]
+[ext_resource path="res://scripts/player_info.gd" type="Script" id=11]
 
 [sub_resource type="Shader" id=1]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.4.4.stable's CanvasItemMaterial.
@@ -87,26 +88,68 @@ autoplay = true
 anchor_mode = 0
 current = true
 
-[node name="ammo" type="CanvasLayer" parent="."]
-script = ExtResource( 4 )
+[node name="player_info_hud" type="CanvasLayer" parent="."]
+script = ExtResource( 11 )
 
-[node name="container" type="MarginContainer" parent="ammo"]
+[node name="life_hud_container" type="MarginContainer" parent="player_info_hud"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Label" type="Label" parent="ammo/container"]
+[node name="Label" type="Label" parent="player_info_hud/life_hud_container"]
 margin_top = 4.0
-margin_right = 43.0
+margin_right = 40.0
 margin_bottom = 35.0
-text = "Ammo
+text = "Life
 "
 
-[node name="player_ammo" type="Label" parent="ammo/container"]
+[node name="player_life" type="Label" parent="player_info_hud/life_hud_container"]
 margin_top = 4.0
-margin_right = 43.0
+margin_right = 40.0
 margin_bottom = 35.0
 text = "
 "
+
+[node name="ammo_hud_container" type="MarginContainer" parent="player_info_hud"]
+margin_top = 30.0
+margin_right = 43.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="player_info_hud/ammo_hud_container"]
+margin_right = 43.0
+margin_bottom = 31.0
+text = "Ammo
+"
+
+[node name="player_ammo" type="Label" parent="player_info_hud/ammo_hud_container"]
+margin_right = 43.0
+margin_bottom = 31.0
+text = "
+"
+
+[node name="player_score_hud" type="CanvasLayer" parent="."]
+offset = Vector2( 120, 0 )
+transform = Transform2D( 1, 0, 0, 1, 120, 0 )
+script = ExtResource( 4 )
+
+[node name="player_score_hud_container" type="MarginContainer" parent="player_score_hud"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="player_score_hud/player_score_hud_container"]
+margin_top = 4.0
+margin_right = 40.0
+margin_bottom = 35.0
+text = "Score
+"
+align = 2
+
+[node name="player_score" type="Label" parent="player_score_hud/player_score_hud_container"]
+margin_top = 4.0
+margin_right = 40.0
+margin_bottom = 35.0
+text = "
+"
+align = 2
 
 [connection signal="area_entered" from="car/PLayerCollisionShape" to="car" method="_on_PLayerCollisionShape_area_entered"]
 [connection signal="timeout" from="enemies/spawn_timer" to="enemies" method="_on_spawn_timer_timeout"]
