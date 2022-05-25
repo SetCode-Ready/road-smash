@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Traffic cone.png-8695d6cba01deff112ecaa014cce94a8.stex"
+path="res://.import/explosion.png-408de70c32886285ad0baad9c0cfba29.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Car game v4/Construction objects/Traffic cone.png"
-dest_files=[ "res://.import/Traffic cone.png-8695d6cba01deff112ecaa014cce94a8.stex" ]
+source_file="res://Car game v4/Animations/Explosion animation/explosion.png"
+dest_files=[ "res://.import/explosion.png-408de70c32886285ad0baad9c0cfba29.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

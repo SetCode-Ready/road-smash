@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Traffic cone.png-8695d6cba01deff112ecaa014cce94a8.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
-source_file="res://Car game v4/Construction objects/Traffic cone.png"
-dest_files=[ "res://.import/Traffic cone.png-8695d6cba01deff112ecaa014cce94a8.stex" ]
-
+source_file="res://Car game v4/Construction objects/illustration-digital-art-car-vehicle-artwork-cartoon-107115-wallhere.com.jpg"
 [params]
 
 compress/mode=0
@@ -20,7 +15,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
