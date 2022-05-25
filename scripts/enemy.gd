@@ -3,6 +3,8 @@ extends Node2D
 const PRE_LAZER = preload("res://scenes/enemy_gun_bullet.tscn")
 const PRE_EXPLOSION = preload("res://scenes/explosion.tscn")
 
+onready var player_car = get_node("../../car")
+
 var explosion = PRE_EXPLOSION.instance()
 
 onready var velY = rand_range(50, 120)
@@ -17,7 +19,8 @@ func _ready():
 func _process(delta: float) -> void:
 	
 	if !dead:
-		if life == 0 and !get_node("explosion"):    
+		if life == 0 and !get_node("explosion"):
+			player_car.score += 10			  
 			add_child(explosion)
 			explosion.global_position = global_position
 			get_node("car_explosion_fx").play()

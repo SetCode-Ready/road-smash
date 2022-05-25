@@ -1,7 +1,16 @@
 extends Node2D
 
 export var velocity = 120
+
 const PRE_LAZER = preload("res://scenes/player_gun_bullet.tscn")
+const PRE_EXPLOSION = preload("res://scenes/explosion.tscn")
+
+var explosion = PRE_EXPLOSION.instance()
+
+var score = 0
+
+var life = 100
+var dead = false
 
 export var bullet = 8
 var reloading = false
@@ -10,6 +19,21 @@ func _ready():
 	pass
 
 func _process(delta):
+	
+	score += delta * 1
+	
+	if !dead:
+		if life <= 0 and !get_node("explosion"):    
+			add_child(explosion)
+			explosion.global_position = global_position
+			get_parent().get_node("car_explosion_fx").play()
+			velocity = 0
+			
+		if explosion.finished:
+			dead = true
+			get_node("explosion").queue_free()
+			$CarRed.set_texture(load("res://sprites/enemy_crashed.png"))
+			get_tree().change_scene("res://scenes/start_scene.tscn")
 	
 	var dirX = 0
 	var dirY = 0
@@ -55,5 +79,6 @@ func _on_gun_reload_fx_finished():
 
 
 func _on_PLayerCollisionShape_area_entered(area):
-	if(area.get_name() == "EnemyGunBulletArea"):
+	if(area.get_name() == "EnemyGunBulletArea" || area.get_name() == "EnemyArea"):
+		life -= 25	
 		get_parent().get_node("car_explosion_fx").play()
