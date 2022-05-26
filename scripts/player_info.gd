@@ -2,21 +2,19 @@ extends CanvasLayer
 
 var life
 
-var life_label = "{life}"
-
 var bullet
 
 var ammo_label = "{bullet} / 8"
 
 func _ready():
-	$life_hud_container/player_life.text = life_label
+	life = get_parent().get_node("car").life
+	$player_life_bar.value = life
 	$ammo_hud_container/player_ammo.text = ammo_label
 
 
 func _process(_delta):
 	life = get_parent().get_node("car").life
-	var actual_life_label = life_label.format({"life" : +(life)})
-	$life_hud_container/player_life.text = actual_life_label
+	$player_life_bar.value = life
 	
 	bullet = get_parent().get_node("car").bullet
 	if get_parent().get_node("car").reloading:

@@ -9,7 +9,7 @@ var explosion = PRE_EXPLOSION.instance()
 
 var score = 0
 
-var life = 100
+var life = 100.0
 var dead = false
 
 export var bullet = 8
