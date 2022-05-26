@@ -5,6 +5,7 @@ export (NodePath) var car
 var time = 0.0
 
 func _ready() -> void:
+	
 	if car:
 		car = get_node(car)
 	else:
