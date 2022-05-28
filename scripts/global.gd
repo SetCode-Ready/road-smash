@@ -4,7 +4,6 @@ var player_name setget set_player_name
 var total_score = 0.0
 
 func set_player_name(new_name):
-	print(new_name)
 	player_name = new_name
 
 func _ready() -> void:

@@ -7,6 +7,8 @@ const PRE_EXPLOSION = preload("res://scenes/explosion.tscn")
 
 var explosion = PRE_EXPLOSION.instance()
 
+var distance = 0.0
+
 var score = 0
 
 var life = 100.0
@@ -21,6 +23,7 @@ func _ready():
 func _process(delta):
 	
 	score += delta * 1
+	distance += delta * 1
 	
 	if !dead:
 		if life <= 0 and !get_node("explosion"):    
