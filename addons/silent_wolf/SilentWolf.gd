@@ -27,7 +27,7 @@ var config = {
 }
 
 var scores_config = {
-	"open_scene_on_close": "res://scenes/Splash.tscn"
+	"open_scene_on_close": "res://scenes/start_scene.tscn"
 }
 
 var auth_config = {
