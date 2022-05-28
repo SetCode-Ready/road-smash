@@ -25,16 +25,19 @@ func _process(delta: float) -> void:
 			0:
 				$NamePanel.show()
 			1:
+				load_leaderboard_scene()
+			2:
 				get_tree().quit()
 		
 	$arrow.global_position = $itens.get_child(opcao).global_position + Vector2(-10, 8)
 
 
+func load_leaderboard_scene():
+	get_tree().change_scene("res://addons/silent_wolf/Scores/Leaderboard.tscn")
 
 func _on_SubmitName_pressed() -> void:
 	var name = $"NamePanel/NameInput".text
 	Global.set_player_name(name)
-	SilentWolf.Scores.persist_score(Global.player_name, Global.total_score)
 	SilentWolf.Scores.get_high_scores()
 	$"NamePanel".hide()
 	get_tree().change_scene("res://scenes/game.tscn")

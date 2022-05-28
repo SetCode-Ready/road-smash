@@ -8,10 +8,13 @@ func _ready() -> void:
 	
 	if car:
 		car = get_node(car)
-	else:
+	else: 
 		set_process(false)
 
 
 func _process(delta: float) -> void:
+	var player = get_node("../car")
+	if player.dead == true:
+		set_process(false)
 	time += delta
 	material.set_shader_param("time", time)

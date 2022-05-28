@@ -16,7 +16,7 @@ export var bullet = 8
 var reloading = false
 
 func _ready():
-	pass
+	get_parent().get_node('GameOverPanel').hide()
 
 func _process(delta):
 	
@@ -31,9 +31,7 @@ func _process(delta):
 			
 		if explosion.finished:
 			dead = true
-			get_node("explosion").queue_free()
-			$CarRed.set_texture(load("res://sprites/enemy_crashed.png"))
-			get_tree().change_scene("res://scenes/start_scene.tscn")
+			onPlayerDied()
 	
 	var dirX = 0
 	var dirY = 0
@@ -82,3 +80,22 @@ func _on_PLayerCollisionShape_area_entered(area):
 	if(area.get_name() == "EnemyGunBulletArea" || area.get_name() == "EnemyArea"):
 		life -= 25	
 		get_parent().get_node("car_explosion_fx").play()
+
+
+func onPlayerDied():
+	get_node("explosion").queue_free()
+	$CarRed.set_texture(load("res://sprites/enemy_crashed.png"))
+	Global.total_score = score
+	get_tree().paused = true
+	SilentWolf.Scores.persist_score(Global.player_name, Global.total_score)
+	get_parent().get_node('GameOverPanel').show()
+
+
+func _on_RestartButton_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene("res://scenes/game.tscn")
+
+
+func _on_GoToMenuButton_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene("res://scenes/start_scene.tscn")

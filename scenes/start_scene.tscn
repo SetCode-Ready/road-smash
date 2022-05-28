@@ -42,10 +42,21 @@ margin_left = -2.0
 margin_right = 38.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 4 )
-text = "START"
+text = "INICIAR"
+
+[node name="rank" type="Node2D" parent="itens"]
+position = Vector2( 64, 227 )
+
+[node name="Label" type="Label" parent="itens/rank"]
+margin_left = -2.0
+margin_top = 1.0
+margin_right = 38.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 4 )
+text = "RANKING"
 
 [node name="exit" type="Node2D" parent="itens"]
-position = Vector2( 64.5, 224.5 )
+position = Vector2( 65, 249 )
 
 [node name="Label" type="Label" parent="itens/exit"]
 margin_left = -2.0
@@ -53,7 +64,7 @@ margin_top = 1.0
 margin_right = 38.0
 margin_bottom = 15.0
 custom_fonts/font = ExtResource( 4 )
-text = "EXIT"
+text = "SAIR"
 
 [node name="arrow" type="Node2D" parent="."]
 
